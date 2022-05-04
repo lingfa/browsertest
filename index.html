@@ -17,7 +17,35 @@ var result = bowser.getParser(window.navigator.userAgent);
   console.log(666, result);
   document.write("You are using " + result.parsedResult.browser.name +
                  " v" + result.parsedResult.browser.version +
-                 " on " + result.parsedResult.os.name);</script>
+                 " on " + result.parsedResult.os.name);
+
+                 const browser = Bowser.getParser(window.navigator.userAgent);
+const isValidBrowser = browser.satisfies({
+  // declare browsers per OS
+  windows: {
+    "internet explorer": ">10",
+  },
+  macos: {
+    safari: ">12"
+  },
+
+  // per platform (mobile, desktop or tablet)
+  mobile: {
+    safari: '>=9',
+    'android browser': '>3.10'
+  },
+
+  // or in general
+  chrome: ">65",
+  firefox: ">66",
+  opera: ">54",
+
+});
+if (window.navigator.userAgent.indexOf("Trident") > 0 || !isValidBrowser ||result.parsedResult.browser.name === "UC Browser") {
+        document.getElementById("root").innerHTML = "<span data-testid=\"title\">Dieser Browser wird nicht unterstützt!</span>";
+  }
+
+                 </script>
                  . Thank You
   </body>
 </html>
