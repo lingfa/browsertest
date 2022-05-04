@@ -41,6 +41,7 @@ const isValidBrowser = browser.satisfies({
   opera: ">54",
 
 });
+  
 if ( !isValidBrowser ||result.parsedResult.browser.name == "UC Browser") {
         document.getElementById("root").innerHTML = "<span data-testid=\"title\">Dieser Browser wird nicht unterstützt!</span>";
   }
