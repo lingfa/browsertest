@@ -13,15 +13,13 @@
 if (window.navigator.userAgent.indexOf("Trident") > 0 ) {
         document.getElementById("root").innerHTML = "<span data-testid=\"title\">Dieser Browser wird nicht unterstützt!</span>";
   }
-  
 var result = bowser.getParser(window.navigator.userAgent);
   console.log(666, result);
-  
   document.write("You are using " + result.parsedResult.browser.name +
                  " v" + result.parsedResult.browser.version +
                  " on " + result.parsedResult.os.name);
 
-const browser = Bowser.getParser(window.navigator.userAgent);
+                 const browser = result
 const isValidBrowser = browser.satisfies({
   // declare browsers per OS
   windows: {
@@ -43,7 +41,6 @@ const isValidBrowser = browser.satisfies({
   opera: ">54",
 
 });
-  
 if ( !isValidBrowser ||result.parsedResult.browser.name == "UC Browser") {
         document.getElementById("root").innerHTML = "<span data-testid=\"title\">Dieser Browser wird nicht unterstützt!</span>";
   }
