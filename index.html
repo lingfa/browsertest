@@ -10,7 +10,9 @@
   <body>
     <div id="root"></div>
 <script>
-
+if (window.navigator.userAgent.indexOf("Trident") > 0 || result && !isValidBrowser ||result.parsedResult.browser.name === "UC Browser") {
+        document.getElementById("root").innerHTML = "<span data-testid=\"title\">Dieser Browser wird nicht unterstützt!</span>";
+  }
 var result = bowser.getParser(window.navigator.userAgent);
   console.log(666, result);
   document.write("You are using " + result.parsedResult.browser.name +
@@ -39,7 +41,7 @@ const isValidBrowser = browser.satisfies({
   opera: ">54",
 
 });
-if (window.navigator.userAgent.indexOf("Trident") > 0 || !isValidBrowser ||result.parsedResult.browser.name === "UC Browser") {
+if ( result && !isValidBrowser ||result.parsedResult.browser.name === "UC Browser") {
         document.getElementById("root").innerHTML = "<span data-testid=\"title\">Dieser Browser wird nicht unterstützt!</span>";
   }
 
