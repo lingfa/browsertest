@@ -9,9 +9,10 @@
   </head>
   <body>
     <div id="root"></div>
+
 <script>
 if (window.navigator.userAgent.indexOf("Trident") > 0 ) {
-        document.getElementById("root").innerHTML = "<span data-testid=\"title\">Dieser Browser wird nicht unterstützt!</span>";
+        document.getElementById("root").innerHTML = '<div class="wrap-support-message"> <h1>Dieser Browser wird nicht unterstützt</h1> <p> Der von Ihnen verwendete Browser kann die Webseite leider nicht anzeigen. Bitte verwenden Sie eine aktuelle Version folgender Browser: </p> <ul> <li>Google Chrome</li> <li>Firefox</li> <li>Microsoft Edge</li> <li>Safari (Apple)</li> </ul> <p> Sollten weiterhin ein Probleme bestehen, wenden Sie sich bitte über das <a>Kontaktformular</a> der XXXX an unseren Kundenservice. </p> </div>';
   }
 var result = bowser.getParser(window.navigator.userAgent);
   console.log(666, result);
@@ -41,7 +42,6 @@ const isValidBrowser = browser.satisfies({
   opera: ">54",
 
 });
-  
 if ( !isValidBrowser ||result.parsedResult.browser.name == "UC Browser") {
         document.getElementById("root").innerHTML = "<span data-testid=\"title\">Dieser Browser wird nicht unterstützt!</span>";
   }
