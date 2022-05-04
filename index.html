@@ -9,6 +9,9 @@
   </head>
   <body>
 <script>
+    if (window.navigator.userAgent.indexOf("Trident") > 0) {
+        document.getElementById("root").innerHTML = "<span data-testid=\"title\">Dieser Browser wird nicht unterstützt!</span>";
+  }
 console.log(platform);
 document.write("You are using " + platform.name +
                " v" + platform.version +
