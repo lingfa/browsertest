@@ -4,52 +4,107 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Browsertest</title>
+    <style type="text/css">
+      #fallback {
+     max-width: 500px;
+     margin: 1rem auto;
+     padding: 1.5rem;
+    }
 
+    #fallback img{
+      margin: 0 0 2.5rem 0;
+     }
+
+    #fallback h1 {
+      font-size: 1.8rem;
+      font-weight: 300;
+      line-height: 1.4;
+      margin-top: 0px;
+      margin-bottom: 1.5rem;
+      font-family: theSansLight, Arial, Helvetica, Arial, Lucida, sans-serif;
+    }
+
+    #fallback p, #fallback ul {
+      color: rgb(112, 113, 115);
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    #fallback ul {
+      margin: 1rem 0 0;
+      list-style-position: inside;
+    }
+
+    #fallback a {
+      color: rgb(112, 113, 115);
+    }
+
+    </style>
     <script src="https://unpkg.com/bowser@2.4.0/es5.js"></script>
   </head>
   <body>
     <div id="root"></div>
 
+
+  <div id="fallback" style="display: none;">
+  <h1>Dieser Browser wird nicht unterstützt</h1>
+  <p>
+    Der von Ihnen verwendete Browser kann die Webseite leider nicht anzeigen.
+    Bitte verwenden Sie eine aktuelle Version folgender Browser:
+  </p>
+  <ul>
+  <li>Google Chrome</li>
+  <li>Firefox</li>
+  <li>Microsoft Edge</li>
+  <li>Safari (Apple)</li>
+  </ul>
+  <br />
+  <p>
+    Sollten weiterhin ein Probleme bestehen, wenden Sie sich bitte an unseren Kundenservice.
+    Sie können unseren Kundenservice über das&nbsp;
+    oder telefonisch erreichen:
+    <br />
+    <br /> 030 208 666 44 (Deutschland)
+    <br />
+    01 274 86 56 (Österreich)
+  </p>
+</div>
 <script>
-  var mes = '<div class="wrap-support-message"> <h1>Dieser Browser wird nicht unterstützt</h1> <p> Der von Ihnen verwendete Browser kann die Webseite leider nicht anzeigen. Bitte verwenden Sie eine aktuelle Version folgender Browser: </p> <ul> <li>Google Chrome</li> <li>Firefox</li> <li>Microsoft Edge</li> <li>Safari (Apple)</li> </ul> <p> Sollten weiterhin ein Probleme bestehen, wenden Sie sich bitte über das Kontaktformular der assona an unseren Kundenservice. </p> </div>';
+  if (window.navigator.userAgent.indexOf("Trident") > 0 ) {
 
-if (window.navigator.userAgent.indexOf("Trident") > 0 ) {
+        document.getElementById("fallback").style.display="block";
+    }
+  var browser = bowser.getParser(window.navigator.userAgent);
 
-       document.getElementById("root").innerHTML = mes;
-  }
-var result = bowser.getParser(window.navigator.userAgent);
-  console.log(666, result);
-  document.write("You are using " + result.parsedResult.browser.name +
-                 " v" + result.parsedResult.browser.version +
-                 " on " + result.parsedResult.os.name);
+  const isValidBrowser = browser.satisfies({
+    // declare browsers per OS
+    windows: {
+      safari: ">6"
+    },
+    macos: {
+      safari: ">12"
+    },
 
-                 const browser = result
-const isValidBrowser = browser.satisfies({
-  // declare browsers per OS
-  windows: {
-    "internet explorer": ">10",
-  },
-  macos: {
-    safari: ">12"
-  },
+    // per platform (mobile, desktop or tablet)
+    mobile: {
+      safari: '>=9',
+      'android browser': '>3.10'
+    },
 
-  // per platform (mobile, desktop or tablet)
-  mobile: {
-    safari: '>=9',
-    'android browser': '>3.10'
-  },
+    // or in general
+    chrome: ">65",
+    firefox: ">66",
+    opera: ">54",
 
-  // or in general
-  chrome: ">65",
-  firefox: ">66",
-  opera: ">54",
+  });
 
-});
-if ( !isValidBrowser ||result.parsedResult.browser.name == "UC Browser") {
-  document.getElementById("root").innerHTML = mes;
+  if ( !isValidBrowser ||result.parsedResult.browser.name == "UC Browser") {
+    document.getElementById("fallback").style.display="block";
   }
 
-                 </script>
+</script>
                  . Thank You
   </body>
 </html>
